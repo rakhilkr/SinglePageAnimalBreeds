@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark navbar-inverse">
+      <a class="navbar-brand" href="#">Animals LIST</a>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+
+      </div>
+    </nav>
+
+    <div id="dataentry" class="container pt-3">
+      <br>
+        {% include 'animals/recordsnew.html' %}
+      <br>
+      <p id="error"></p>
+    </div>
+  </body>
+  <script>
+
+  function openTextBox(){
+    $('#textboxDiv').show()
+    $('[id$=Datefields]').val('')
+    $('#Datefields').attr('placeholder','enter date')
+
+  }
+
+  function displayanimalDropdown(){
+    $('#animalcategory').show()
+    $('#firstdropdown').show()
+  }
+
+  function cancel(){
+    $('select').hide()
+    $('#textboxDiv').hide()
+  }
+  </script>
+
+</html>
