@@ -1,0 +1,69 @@
+<table class="table table-striped"  width="50%">
+<thead>
+  <tr>
+
+    <th scope="col">Animal</th>
+    <th scope="col">Breed</th>
+    <th scope="col">Date</th>
+  </tr>
+  <tbody id="tablebody">
+    
+      {% if records %}
+
+      {% for record in records%}
+        <tr>
+            <td>{{record.animal}}</td>
+            <td>{{record.breed}}</td>
+            <td>{{record.created_date}}</td>
+
+        </tr>
+
+      {% endfor%}
+
+      {% else %}
+
+      {% endif %}
+  </tbody>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+<form>
+{% csrf_token %}
+<button type="button" class="btn btn-primary" onclick="displayanimalDropdown()">NEW</button>
+	<br><br>
+	<div id="firstdropdown" style="display:none;">
+	<label>Select Animal Category: </label>
+<select id="animalcategory" name="animalcategory" style="display:none" 
+hx-post="{% url 'ExtractBreed' %}" hx-trigger="change" hx-target="#breeddiv">
+
+</div>
+
+
+  <option disabled selected>----Select The Animal Type ----</option>
+  {% if category %}
+
+  {% for animal in category %}
+
+  <option value="{{animal.animal}}">{{animal.animal}}</option>
+  {% endfor %}
+  {% endif %}
+
+</select>
+
+<br>
+<div id="breeddiv">
+	{% include 'animals/breeds.html' %}
+
+</div>
+<br>
+
+<div id="textboxDiv" style="display:none;">
+<input type="date" placeholder="enter date" id="Datefields" name="Datefields">
+<hr>
+<button type="button" name="formbutton" class="btn btn-primary" 
+	hx-post="{% url 'AddRecords' %}" hx-target="#dataentry" hx-swap="innerHTML">SAVE</button>
+<button type="button" class="btn btn-primary" onclick="cancel()">Cancel</button>
+</div>
+</form>

@@ -1,0 +1,15 @@
+<label>Select Breed Type: </label>
+<select id="breedtypes" name="breedtypes" onchange="openTextBox()">
+
+  <option disabled selected>----Select The Breed Type ----</option>
+
+  {% if breeds %}
+
+  {% for breed in breeds %}
+
+  <option value="{{breed.breed}}">{{breed.breed}}</option>
+  {% endfor %}
+  {% endif %}
+
+
+</select>
